@@ -1,0 +1,27 @@
+{
+  "name": "frontend",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^0.23.0",
+    "bootstrap": "4.3.1",
+    "jquery": "^3.6.0",
+    "monaco-editor": "0.29.1",
+    "popper.js": "^1.16.1",
+    "prismjs": "^1.25.0",
+    "showdown": "^1.9.1",
+    "showdown-katex": "^0.8.0",
+    "sweetalert2": "^11.1.9",
+    "vue": "^3.2.16",
+    "vue-router": "4",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.9.3",
+    "vite": "^2.6.4"
+  }
+}
