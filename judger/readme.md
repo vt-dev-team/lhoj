@@ -7,6 +7,8 @@ Using python to judge, without **any safety measures**.
 ```bash
 pip install psutil requests
 python main.py
+mkdir data
+mkdir tmp
 ```
 
 #### Working Principle
