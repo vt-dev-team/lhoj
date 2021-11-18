@@ -3,26 +3,21 @@
 </template>
 
 <script setup>
-import { onMounted, defineEmits, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import * as monaco from 'monaco-editor';
-
-import EditorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
-import JsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker';
-
-self.MonacoEnvironment = {
-    getWorker(workerId, label) {
-        if (label === 'json') {
-            return new JsonWorker();
-        }
-        return new EditorWorker();
-    },
-};
 
 const props = defineProps({
     modelValue: String,
 });
 
+import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
 const emit = defineEmits(['update:modelValue']);
+
+self.MonacoEnvironment = {
+    getWorker(_, label) {
+        return new editorWorker()
+    }
+}
 
 const dom = ref();
 let instance;

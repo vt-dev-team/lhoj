@@ -25,11 +25,11 @@
 </template>
 
 <script>
-import axios from 'axios'
 import Swal from 'sweetalert2'
 import showdown from 'showdown'
 import showdownKatex from 'showdown-katex'
 import Prism from 'prismjs'
+import 'prismjs/components/prism-python.js'
 const converter = new showdown.Converter({
     extensions: [
         showdownKatex({
@@ -45,9 +45,14 @@ const converter = new showdown.Converter({
 })
 const Toast = Swal.mixin({
     toast: true,
-    position: 'top-end',
+    position: "top-end",
     showConfirmButton: false,
-    timer: 3000
+    timer: 1000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
 })
 export default {
     data() {
@@ -64,7 +69,7 @@ export default {
     mounted() {
         const _t = this
         _t.$store.commit('changeTitle', '加载中')
-        axios.get(`${_t.$store.state.backendURL}/api/announcements/${_t.$route.params.id}/`).then((res) => {
+        _t.$axios.get(`${_t.$store.state.backendURL}/api/main/announcements/${_t.$route.params.id}/`).then((res) => {
             _t.AnnouncementView = res.data
             _t.AnnouncementView.content = converter.makeHtml(_t.AnnouncementView.content)
             _t.$store.commit('changeTitle', _t.AnnouncementView.title)
